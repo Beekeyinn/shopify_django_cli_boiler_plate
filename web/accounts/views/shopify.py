@@ -9,7 +9,7 @@ from django.http import (
     HttpResponsePermanentRedirect,
     HttpResponseRedirect,
 )
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect
 from django.urls import reverse
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
@@ -23,6 +23,8 @@ from accounts.utils import (
     validate_params,
 )
 from django.views.decorators.clickjacking import xframe_options_exempt
+
+from accounts.authentication import client_side_redirect
 
 logger = logging.getLogger("install")
 
@@ -45,7 +47,7 @@ def callback(request: HttpRequest):
     except ValueError as exception:
         logger.error("Exception error in call back", exc_info=exception)
         messages.error(request, str(exception))
-        return redirect(reverse("login"))
+        return client_side_redirect(request)
     else:
         store_shop_information(access_token, access_scopes, shop, host)
         after_authenticate_jobs(request, shop, access_token)

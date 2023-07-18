@@ -82,7 +82,8 @@ def authenticate(
 def client_side_redirect(
     request: HttpRequest,
 ) -> Union[HttpResponsePermanentRedirect, HttpResponseRedirect]:
-    redirect_url = f"/ExitIFrame?host={request.GET.get('host')}"
+    REDIRECT = f"https://{request.get_host()}{reverse('update')}?shop={request.GET.get('shop')}"
+    redirect_url = f"https://{request.get_host()}/ExitIFrame?host={request.GET.get('host')}&redirectUri={REDIRECT}"
     return redirect(redirect_url)
 
 

@@ -18,14 +18,13 @@ from django.contrib import admin
 from django.urls import path
 
 from home.views import HomeView
-from accounts.views.shopify import LoginView, UpdateAPPView
+from accounts.views.shopify import UpdateAPPView
 from accounts.views.shopify import callback
 from accounts.views.shopify import uninstall
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", HomeView.as_view(), name="root_path"),
-    path("auth/callback", LoginView.as_view(), name="login"),
     path("api/auth/callback", callback, name="callback"),
     path("api/auth/", UpdateAPPView.as_view(), name="update"),
     path("api/webhooks", uninstall, name="uninstall"),

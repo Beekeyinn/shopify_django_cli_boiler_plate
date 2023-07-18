@@ -50,7 +50,7 @@ class User(
     ExtraFieldsModelsMixin,
     PermissionsMixin,
 ):
-    shopify_domain: models.CharField[str] = models.CharField(
+    shopify_domain = models.CharField(
         verbose_name=_("Shopify Domain Name"),
         max_length=255,
         unique=True,
@@ -63,7 +63,7 @@ class User(
         max_length=64,
         default="00000000000000000000000000000000",
     )
-    access_scopes: models.TextField[str] = models.TextField(
+    access_scopes = models.TextField(
         verbose_name=_("Shopify Access Scope"),
         default=getattr(settings, "SHOPIFY_API_SCOPES"),
     )
@@ -72,9 +72,7 @@ class User(
         max_length=100,
         default="000000000000000000000000000000",
     )
-    is_active: models.BooleanField[bool] = models.BooleanField(
-        verbose_name=_("Active"), default=True
-    )
+    is_active = models.BooleanField(verbose_name=_("Active"), default=True)
     is_admin = models.BooleanField(verbose_name=_("Admin"), default=False)
 
     objects = UserManager()

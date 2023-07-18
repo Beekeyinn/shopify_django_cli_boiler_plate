@@ -24,7 +24,6 @@ const proxyOptions = {
 const host = process.env.HOST
     ? process.env.HOST.replace(/https?:\/\//, "")
     : "localhost";
-console.log("ENVS: ", process.env);
 let hmrConfig;
 if (host === "localhost") {
     hmrConfig = {

@@ -6,7 +6,7 @@ This is a template for building a [Shopify app](https://shopify.dev/docs/apps/ge
 
 Shopify apps are built on a variety of Shopify tools to create a great merchant experience. The [create an app](https://shopify.dev/docs/apps/getting-started/create) tutorial in our developer documentation will guide you through creating a Shopify app using this template.
 
-The PHP app template comes with the following out-of-the-box functionality:
+The Django app template comes with the following out-of-the-box functionality:
 
 -   OAuth: Installing the app and granting permissions
 -   GraphQL Admin API: Querying or mutating Shopify admin data
@@ -33,7 +33,7 @@ This template combines a number of third party open source tools:
 
 These third party tools are complemented by Shopify specific tools to ease app development:
 
--   [Shopify API library](https://github.com/Shopify/shopify-api-php) adds OAuth to the Laravel backend. This lets users install the app and grant scope permissions.
+-   [Shopify API library](https://github.com/Shopify/shopify-api-Django) adds OAuth to the Laravel backend. This lets users install the app and grant scope permissions.
 -   [App Bridge React](https://shopify.dev/docs/tools/app-bridge/react-components) adds authentication to API requests in the frontend and renders components outside of the embedded App’s iFrame.
 -   [Polaris React](https://polaris.shopify.com/) is a powerful design system and component library that helps developers build high quality, consistent experiences for Shopify merchants.
 -   [Custom hooks](https://github.com/Shopify/shopify-frontend-template-react/tree/main/hooks) make authenticated requests to the GraphQL Admin API.
@@ -60,7 +60,7 @@ These third party tools are complemented by Shopify specific tools to ease app d
 ### Setting up your Django app
 
 Once the Shopify CLI clones the repo, you will be able to run commands on your app.
-However, the CLI will not manage your PHP dependencies automatically, so you will need to go through some steps to be able to run your app.
+However, the CLI will not manage your Django dependencies automatically, so you will need to go through some steps to be able to run your app.
 These are the typical steps needed to set up a Laravel app once it's cloned:
 
 1. Start off by switching to the `web` folder:
@@ -175,7 +175,7 @@ npm run build --api-key=REPLACE_ME
 -   [Introduction to Shopify apps](https://shopify.dev/docs/apps/getting-started)
 -   [App authentication](https://shopify.dev/docs/apps/auth)
 -   [Shopify CLI](https://shopify.dev/docs/apps/tools/cli)
--   [Shopify API Library documentation](https://github.com/Shopify/shopify-api-php/tree/main/docs)
+-   [Shopify API Library documentation](https://github.com/Shopify/shopify-api-Django/tree/main/docs)
 -   [Getting started with internationalizing your app](https://shopify.dev/docs/apps/best-practices/internationalization/getting-started)
     -   [i18next](https://www.i18next.com/)
         -   [Configuration options](https://www.i18next.com/overview/configuration-options)
