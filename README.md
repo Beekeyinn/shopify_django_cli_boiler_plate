@@ -1,6 +1,6 @@
-# Shopify App Template - PHP
+# Shopify App Template - Django
 
-This is a template for building a [Shopify app](https://shopify.dev/docs/apps/getting-started) using PHP and React. It contains the basics for building a Shopify app.
+This is a template for building a [Shopify app](https://shopify.dev/docs/apps/getting-started) using Django and React. It contains the basics for building a Shopify app.
 
 Rather than cloning this repo, you can use your preferred package manager and the Shopify CLI with [these steps](#installing-the-template).
 
@@ -22,7 +22,7 @@ The PHP app template comes with the following out-of-the-box functionality:
 
 This template combines a number of third party open source tools:
 
--   [Laravel](https://laravel.com/) builds and tests the backend.
+-   [Django](https://docs.djangoproject.com/en/4.2/) builds and tests the backend.
 -   [Vite](https://vitejs.dev/) builds the [React](https://reactjs.org/) frontend.
 -   [React Router](https://reactrouter.com/) is used for routing. We wrap this with file-based routing.
 -   [React Query](https://react-query.tanstack.com/) queries the Admin API.
@@ -48,35 +48,18 @@ These third party tools are complemented by Shopify specific tools to ease app d
 
 1. You must [create a Shopify partner account](https://partners.shopify.com/signup) if you don’t have one.
 1. You must create a store for testing if you don't have one, either a [development store](https://help.shopify.com/en/partners/dashboard/development-stores#create-a-development-store) or a [Shopify Plus sandbox store](https://help.shopify.com/en/partners/dashboard/managing-stores/plus-sandbox-store).
-1. You must have [PHP](https://www.php.net/) installed.
-1. You must have [Composer](https://getcomposer.org/) installed.
+1. You must have [Python](https://www.python.org/) installed.
 1. You must have [Node.js](https://nodejs.org/) installed.
 
-### Installing the template
-
-This template runs on Shopify CLI 3.0, which is a node package that can be included in projects. You can install it using your preferred Node.js package manager:
-
-Using yarn:
+### Installing the requirements
 
 ```shell
-yarn create @shopify/app --template php
+    git clone https://github.com/Beekeyinn/shopify_django_cli_boiler_plate
+    cd shopify_django_cli_boiler_plate
+    npm install or yarn install
 ```
 
-Using npx:
-
-```shell
-npm init @shopify/app@latest -- --template php
-```
-
-Using pnpm:
-
-```shell
-pnpm create @shopify/app@latest --template php
-```
-
-This will clone the template and install the CLI in that project.
-
-### Setting up your Laravel app
+### Setting up your Django app
 
 Once the Shopify CLI clones the repo, you will be able to run commands on your app.
 However, the CLI will not manage your PHP dependencies automatically, so you will need to go through some steps to be able to run your app.
@@ -96,7 +79,7 @@ These are the typical steps needed to set up a Laravel app once it's cloned:
 
     ### in window
 
-    ```shell
+    ```cmd
     venv/Script/activate.bat
     ```
 
@@ -106,6 +89,10 @@ These are the typical steps needed to set up a Laravel app once it's cloned:
     source venv/bin/python
     ```
 
+1. Install requirements
+    ```shell
+    pip install -r requirements.txt
+    ```
 1. Create the `.env` file:
 
     ```shell
