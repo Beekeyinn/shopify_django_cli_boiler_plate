@@ -170,45 +170,6 @@ Using npm:
 npm run build --api-key=REPLACE_ME
 ```
 
-### I can't get past the ngrok "Visit site" page
-
-When you’re previewing your app or extension, you might see an ngrok interstitial page with a warning:
-
-```
-You are about to visit <id>.ngrok.io: Visit Site
-```
-
-If you click the `Visit Site` button, but continue to see this page, then you should run dev using an alternate tunnel URL that you run using tunneling software.
-We've validated that [Cloudflare Tunnel](https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/run-tunnel/trycloudflare/) works with this template.
-
-To do that, you can [install the `cloudflared` CLI tool](https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/install-and-setup/installation/), and run:
-
-```shell
-# Note that you can also use a different port
-cloudflared tunnel --url http://localhost:3000
-```
-
-In the output produced by `cloudflared tunnel` command, you will notice a https URL where the domain ends with `trycloudflare.com`. This is your tunnel URL. You need to copy this URL as you will need it in the next step.
-
-```shell
-2022-11-11T19:57:55Z INF Requesting new quick Tunnel on trycloudflare.com...
-2022-11-11T19:57:58Z INF +--------------------------------------------------------------------------------------------+
-2022-11-11T19:57:58Z INF |  Your quick Tunnel has been created! Visit it at (it may take some time to be reachable):  |
-2022-11-11T19:57:58Z INF |  https://randomly-generated-hostname.trycloudflare.com                                     |
-2022-11-11T19:57:58Z INF +--------------------------------------------------------------------------------------------+
-```
-
-In a different terminal window, navigate to your app's root and run one of the following commands (replacing `randomly-generated-hostname` with the Cloudflare tunnel URL copied from the output of `cloudflared` command):
-
-```shell
-# Using yarn
-yarn dev --tunnel-url https://randomly-generated-hostname.trycloudflare.com:3000
-# or using npm
-npm run dev --tunnel-url https://randomly-generated-hostname.trycloudflare.com:3000
-# or using pnpm
-pnpm dev --tunnel-url https://randomly-generated-hostname.trycloudflare.com:3000
-```
-
 ## Developer resources
 
 -   [Introduction to Shopify apps](https://shopify.dev/docs/apps/getting-started)
