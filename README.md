@@ -170,48 +170,6 @@ Using npm:
 npm run build --api-key=REPLACE_ME
 ```
 
-## Known issues
-
-### Hot module replacement and Firefox
-
-When running the app with the CLI in development mode on Firefox, you might see your app constantly reloading when you access it.
-That happened in previous versions of the CLI, because of the way HMR websocket requests work.
-
-We fixed this issue with v3.4.0 of the CLI, so after updating it, you can make the following changes to your app's `web/frontend/vite.config.js` file:
-
-1. Change the definition `hmrConfig` object to be:
-
-    ```js
-    const host = process.env.HOST
-        ? process.env.HOST.replace(/https?:\/\//, "")
-        : "localhost";
-
-    let hmrConfig;
-    if (host === "localhost") {
-        hmrConfig = {
-            protocol: "ws",
-            host: "localhost",
-            port: 64999,
-            clientPort: 64999,
-        };
-    } else {
-        hmrConfig = {
-            protocol: "wss",
-            host: host,
-            port: process.env.FRONTEND_PORT,
-            clientPort: 443,
-        };
-    }
-    ```
-
-1. Change the `server.host` setting in the configs to `"localhost"`:
-
-    ```js
-    server: {
-      host: "localhost",
-      ...
-    ```
-
 ### I can't get past the ngrok "Visit site" page
 
 When you’re previewing your app or extension, you might see an ngrok interstitial page with a warning:
