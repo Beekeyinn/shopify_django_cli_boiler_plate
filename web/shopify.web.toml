@@ -1,0 +1,5 @@
+roles = ["backend"]
+
+
+[commands]
+dev = "venv/Scripts/python manage.py runserver"
