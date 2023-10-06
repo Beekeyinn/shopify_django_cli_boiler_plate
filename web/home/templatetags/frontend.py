@@ -2,7 +2,7 @@ import json
 
 from django import template
 from django.conf import settings
-from django.utils.safestring import mark_safe, SafeText
+from django.utils.safestring import SafeText, mark_safe
 
 register = template.Library()
 
@@ -26,13 +26,16 @@ def render_vite_bundle() -> SafeText:
         imports_files = "".join(
             [
                 f'<script type="module" src="/static/reactUI/{manifest[file]["file"]}"></script>'
-                for file in manifest["index.html"]["imports"]
+                for file in manifest["index.html"]["dynamicImports"]
             ]
         )
     else:
         imports_files = ""
     return mark_safe(
         f"""<script type="module" src="/static/reactUI/{manifest['index.html']['file']}"></script>
-        <link rel="stylesheet" type="text/css" href="/static/reactUI/{manifest['index.html']['css'][0]}" />
+        <link rel="stylesheet" type="text/css" href="/static/reactUI/{manifest["style.css"]['file']}" />
         {imports_files}"""
     )
+
+
+# <link rel="stylesheet" type="text/css" href="/static/reactUI/{manifest['index.html']['css'][0]}" />
