@@ -60,6 +60,8 @@ export default defineConfig(({ mode }) => {
             emptyOutDir: true,
             assetsDir: ".",
             manifest: true,
+            cssCodeSplit: false,
+            sourcemap: true,
             rollupOptions: {
                 output: {
                     entryFileNames: "[name].js",
@@ -74,6 +76,8 @@ export default defineConfig(({ mode }) => {
             hmr: hmrConfig,
             proxy: {
                 "^/(\\?.*)?$": proxyOptions,
+                "^/admin/(\\?.*)?$": proxyOptions,
+                "^/payment/(\\?.*)?$": proxyOptions,
                 "^/api(/|(\\?.*)?$)": proxyOptions,
             },
         },

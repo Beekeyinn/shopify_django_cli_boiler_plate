@@ -3,6 +3,7 @@ import os
 from django.http import HttpRequest
 
 import shopify
+from shopify.api_access import ApiAccess
 from django.conf import settings
 from django.db.transaction import atomic
 from django.urls import reverse
@@ -12,6 +13,7 @@ from typing import Any, Tuple, Union
 from accounts.models import User
 
 from utils.shopify import get_embedded_url
+from accounts.store_front import StoreFrontGraphQl, TokenAlreadyExist
 
 logger = logging.getLogger("install")
 
@@ -86,9 +88,6 @@ def validate_state_param(request: HttpRequest, state: str) -> None:
     request.session.pop("shopify_oauth_state_param", None)
 
 
-from shopify.api_access import ApiAccess
-
-
 def exchange_code_for_access_token(
     request: HttpRequest, shop: str
 ) -> Tuple[str, ApiAccess]:
@@ -124,6 +123,15 @@ def build_callback_redirect_uri(request: HttpRequest, params: dict):
 # callback after_authenticate_jobs helper methods
 def after_authenticate_jobs(request: HttpRequest, shop: str, access_token: str) -> None:
     create_uninstall_webhook(request, shop, access_token)
+
+
+def generate_shop_front_token(shop: User):
+    if settings.SHOPIFY_STORE_FRONT_API:
+        if not shop.storefront_token:
+            try:
+                StoreFrontGraphQl.generate_store_front_token_and_store(shop)
+            except TokenAlreadyExist:
+                StoreFrontGraphQl.delete_all_storefront_token_and_store_one(shop)
 
 
 def create_uninstall_webhook(

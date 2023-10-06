@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "corsheaders",
     "silk",
     "accounts",
+    "profiles",
 ]
 
 MIDDLEWARE = [
@@ -164,8 +165,15 @@ SHOPIFY_API_KEY = os.environ.get("SHOPIFY_API_KEY")
 SHOPIFY_API_SECRET = os.environ.get("SHOPIFY_API_SECRET")
 SHOPIFY_API_SCOPES = os.environ.get("SCOPES")
 SHOPIFY_API_VERSION = os.environ.get("SHOPIFY_API_VERSION")
+SHOPIFY_STORE_FRONT_API = os.environ.get("SHOPIFY_STORE_FRONT_API") == "True"
+
 ADMIN_DOMAIN = os.environ.get("ADMIN_DOMAIN")
 
 HOST_URL = f"{os.environ.get('HOST')}:{os.environ.get('FRONTEND_PORT')}"
 
 FRONTEND_PORT = os.environ.get("FRONTEND_PORT")
+REST_FRAMEWORK = {}
+if not DEBUG:
+    REST_FRAMEWORK["DEFAULT_RENDERER_CLASSES"] = [
+        "base.custom_render.CustomRestResponseRender"
+    ]

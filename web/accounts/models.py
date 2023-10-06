@@ -67,6 +67,12 @@ class User(
         verbose_name=_("Shopify Access Scope"),
         default=getattr(settings, "SHOPIFY_API_SCOPES"),
     )
+    storefront_token = models.CharField(
+        verbose_name="Store Front Api Access Token",
+        max_length=64,
+        null=True,
+        blank=True,
+    )
     host = models.CharField(
         verbose_name=_("Shop ID"),
         max_length=100,
